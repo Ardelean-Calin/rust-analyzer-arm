@@ -15,12 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Get current time
-      uses: josStorer/get-current-time@v2
-      id: current-time
-      with:
-        format: DD-MM-YYYY
-        utcOffset: "+02:00"
     - name: Prepare
       run: |
         sudo apt-get update
@@ -31,12 +25,12 @@ jobs:
         git clone -b release https://github.com/rust-analyzer/rust-analyzer.git
         cd rust-analyzer
         cargo build --release --target=armv7-unknown-linux-gnueabihf
+    - name: Delete previous tag and release
     - name: Create Release
       uses: ncipollo/release-action@v1
-      env:
-        TIME: "${{ steps.current-time.outputs.time }}"
       with:
         artifacts: "rust-analyzer/target/armv7-unknown-linux-gnueabihf/release/rust-analyzer"
         token: ${{ secrets.GITHUB_TOKEN }}
         commit: main
-        tag: ${{ steps.current-time.outputs.time }}
+        allowUpdates: true
+        tag: latest
