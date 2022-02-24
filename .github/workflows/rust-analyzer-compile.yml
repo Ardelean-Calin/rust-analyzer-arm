@@ -31,4 +31,5 @@ jobs:
         artifacts: "rust-analyzer/target/armv7-unknown-linux-gnueabihf/release/rust-analyzer"
         token: ${{ secrets.GITHUB_TOKEN }}
         commit: main
+        allowUpdates: true
         tag: latest
