@@ -25,7 +25,6 @@ jobs:
         git clone -b release https://github.com/rust-analyzer/rust-analyzer.git
         cd rust-analyzer
         cargo build --release --target=armv7-unknown-linux-gnueabihf
-    - name: Delete previous tag and release
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
