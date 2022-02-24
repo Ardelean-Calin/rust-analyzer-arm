@@ -33,3 +33,7 @@ jobs:
         commit: main
         allowUpdates: true
         tag: latest
+    - uses: actions/upload-artifact@v2
+      with:
+        name: rust-analyzer
+        path: rust-analyzer/target/armv7-unknown-linux-gnueabihf/release/rust-analyzer
