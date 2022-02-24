@@ -33,8 +33,10 @@ jobs:
         cargo build --release --target=armv7-unknown-linux-gnueabihf
     - name: Create Release
       uses: ncipollo/release-action@v1
+      env:
+        TIME: "${{ steps.current-time.outputs.time }}"
       with:
         artifacts: "rust-analyzer/target/armv7-unknown-linux-gnueabihf/release/rust-analyzer"
         token: ${{ secrets.GITHUB_TOKEN }}
         commit: main
-        tag: "${{ steps.current-time.outputs.time }}"
+        tag: "$TIME"
