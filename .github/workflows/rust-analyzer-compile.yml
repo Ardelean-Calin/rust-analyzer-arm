@@ -25,15 +25,17 @@ jobs:
         git clone -b release https://github.com/rust-analyzer/rust-analyzer.git
         cd rust-analyzer
         cargo build --release --target=armv7-unknown-linux-gnueabihf
-    - name: Create Release
-      uses: ncipollo/release-action@v1
+        cd target/armv7-unknown-linux-gnueabihf/release/
+        zip rust-analyzer.zip rust-analyzer
+        cd /
+    - name: Deploy Release
+      uses: WebFreak001/deploy-nightly@v1.1.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided by github actions
       with:
-        artifacts: "rust-analyzer/target/armv7-unknown-linux-gnueabihf/release/rust-analyzer"
-        token: ${{ secrets.GITHUB_TOKEN }}
-        allowUpdates: true
-        replacesArtifacts: true
-        tag: latest
-    - uses: actions/upload-artifact@v2
-      with:
-        name: rust-analyzer
-        path: rust-analyzer/target/armv7-unknown-linux-gnueabihf/release/rust-analyzer
+        upload_url: https://uploads.github.com/repos/Ardelean-Calin/rust-analyzer-arm/releases/60411872/assets{?name,label} # find out this value by opening https://api.github.com/repos/<owner>/<repo>/releases in your browser and copy the full "upload_url" value including the {?name,label} part
+        release_id: 60411872 # same as above (id can just be taken out the upload_url, it's used to find old releases)
+        asset_path: ./rust-analyzer/target/armv7-unknown-linux-gnueabihf/release/rust-analyzer.zip # path to archive to upload
+        asset_name: rustanalyzer_arm-nightly-$$.zip # name to upload the release as, use $$ to insert date (YYYYMMDD) and 6 letter commit hash
+        asset_content_type: application/zip # required by GitHub API
+        max_releases: 7 # optional, if there are more releases than this matching the asset_name, the oldest ones are going to be deleted
