@@ -33,8 +33,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided by github actions
       with:
-        upload_url: https://uploads.github.com/repos/Ardelean-Calin/rust-analyzer-arm/releases/60411872/assets{?name,label} # find out this value by opening https://api.github.com/repos/<owner>/<repo>/releases in your browser and copy the full "upload_url" value including the {?name,label} part
-        release_id: 60411872 # same as above (id can just be taken out the upload_url, it's used to find old releases)
+        upload_url: https://uploads.github.com/repos/Ardelean-Calin/rust-analyzer-arm/releases/60456638/assets{?name,label} # find out this value by opening https://api.github.com/repos/<owner>/<repo>/releases in your browser and copy the full "upload_url" value including the {?name,label} part
+        release_id: 60456638 # same as above (id can just be taken out the upload_url, it's used to find old releases)
         asset_path: ./rust-analyzer/target/armv7-unknown-linux-gnueabihf/release/rust-analyzer.zip # path to archive to upload
         asset_name: rustanalyzer_arm-nightly-$$.zip # name to upload the release as, use $$ to insert date (YYYYMMDD) and 6 letter commit hash
         asset_content_type: application/zip # required by GitHub API
