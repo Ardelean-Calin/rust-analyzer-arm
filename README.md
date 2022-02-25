@@ -6,4 +6,10 @@ Currently this workflow runs daily, not on pull request, but this may be improve
 
 To download the latest release use the following command:
 
+**Option 1 - only curl:**
+
+`curl https://api.github.com/repos/ardelean-calin/rust-analyzer-arm/releases/latest | grep "browser_download_url" | grep -Eo 'https://[^\"]*' | xargs curl -Ls -o rust-analyzer.zip -w %{url_effective}`
+
+**Option 2 - curl + wget:**
+
 `curl https://api.github.com/repos/ardelean-calin/rust-analyzer-arm/releases/latest | grep "browser_download_url" | grep -Eo 'https://[^\"]*' | xargs wget`
