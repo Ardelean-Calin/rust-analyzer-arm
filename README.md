@@ -1,4 +1,6 @@
 # rust-analyzer-arm
+[![Compile Rust-Analyzer for ARMv7 (Raspberry Pi 2+)](https://github.com/Ardelean-Calin/rust-analyzer-arm/actions/workflows/rust-analyzer-compile.yml/badge.svg?branch=main)](https://github.com/Ardelean-Calin/rust-analyzer-arm/actions/workflows/rust-analyzer-compile.yml)
+
 The rust-analyzer language server compiled for the ARMv7 instruction set.
 
 This repository contains a single **Github Workflow** which fetches the latest [rust-analyzer](https://github.com/rust-analyzer/rust-analyzer) release and compiles it for ARMv7.
